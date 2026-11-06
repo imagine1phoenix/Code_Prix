@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useContest } from '@/context/ContestContext';
 import { Search, ChevronDown, Bookmark, Flame, CheckCircle2 } from 'lucide-react';
+import { ScrollReveal, StaggerGroup, StaggerItem } from '@/components/animations/ScrollReveal';
+import { TelemetryNetworkCanvas } from '@/components/animations/TelemetryNetworkCanvas';
 
 export default function ProblemsetPage() {
   const router = useRouter();
@@ -112,56 +114,63 @@ export default function ProblemsetPage() {
         </button>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
+        {/* Subtle ambient telemetry background */}
+        <TelemetryNetworkCanvas nodeCount={24} maxDistance={110} className="opacity-40" />
+
         {/* Eyebrow Motif matching Screenshot 1 */}
-        <div className="eyebrow-motif mb-2">
-          <span className="slashes">////</span>
-          <span>CODEFORCES · PROBLEMSET</span>
-        </div>
+        <ScrollReveal direction="down" delay={0.05} distance={15}>
+          <div className="eyebrow-motif mb-2">
+            <span className="slashes">////</span>
+            <span>CODEFORCES · PROBLEMSET</span>
+          </div>
+        </ScrollReveal>
 
         {/* Header Row: Solid + Outlined Headline & Live Problemset Stats */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-          <div>
-            <h1 className="select-none leading-none">
-              <span className="block hero-solid text-6xl sm:text-7xl md:text-8xl">
-                PROBLEM
-              </span>
-              <span className="block hero-outlined text-6xl sm:text-7xl md:text-8xl">
-                SET
-              </span>
-            </h1>
-          </div>
+        <ScrollReveal direction="up" delay={0.1} distance={20}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div>
+              <h1 className="select-none leading-none">
+                <span className="block hero-solid text-6xl sm:text-7xl md:text-8xl">
+                  PROBLEM
+                </span>
+                <span className="block hero-outlined text-6xl sm:text-7xl md:text-8xl">
+                  SET
+                </span>
+              </h1>
+            </div>
 
-          {/* Stats on the right (Exact from Screenshot 1) */}
-          <div className="flex items-center gap-8 bg-[#141518] px-8 py-4 rounded-sm border border-[#26262B]">
-            <div>
-              <div className="font-condensed font-black text-3xl md:text-4xl text-white italic tracking-tight">
-                11,495
+            {/* Stats on the right (Exact from Screenshot 1) */}
+            <div className="flex items-center gap-8 bg-[#141518]/90 backdrop-blur-sm px-8 py-4 rounded-sm border border-[#26262B] shadow-lg card-interactive">
+              <div>
+                <div className="font-condensed font-black text-3xl md:text-4xl text-white italic tracking-tight">
+                  11,495
+                </div>
+                <div className="text-[10px] text-[#8A8A93] font-bold uppercase tracking-wider">
+                  PROBLEMS
+                </div>
               </div>
-              <div className="text-[10px] text-[#8A8A93] font-bold uppercase tracking-wider">
-                PROBLEMS
+              <div className="h-8 w-[1px] bg-[#26262B]" />
+              <div>
+                <div className="font-condensed font-black text-3xl md:text-4xl text-white italic tracking-tight">
+                  {solvedCount > 0 ? solvedCount : '—'}
+                </div>
+                <div className="text-[10px] text-[#8A8A93] font-bold uppercase tracking-wider">
+                  SOLVED
+                </div>
               </div>
-            </div>
-            <div className="h-8 w-[1px] bg-[#26262B]" />
-            <div>
-              <div className="font-condensed font-black text-3xl md:text-4xl text-white italic tracking-tight">
-                {solvedCount > 0 ? solvedCount : '—'}
-              </div>
-              <div className="text-[10px] text-[#8A8A93] font-bold uppercase tracking-wider">
-                SOLVED
-              </div>
-            </div>
-            <div className="h-8 w-[1px] bg-[#26262B]" />
-            <div>
-              <div className="font-condensed font-black text-3xl md:text-4xl text-white italic tracking-tight">
-                {savedProblems.length}
-              </div>
-              <div className="text-[10px] text-[#8A8A93] font-bold uppercase tracking-wider">
-                SAVED
+              <div className="h-8 w-[1px] bg-[#26262B]" />
+              <div>
+                <div className="font-condensed font-black text-3xl md:text-4xl text-white italic tracking-tight">
+                  {savedProblems.length}
+                </div>
+                <div className="text-[10px] text-[#8A8A93] font-bold uppercase tracking-wider">
+                  SAVED
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Primary Filter Tabs Bar (Exact from Screenshot 1) */}
         <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-[#121316] p-1.5 rounded-sm border border-[#202126] mb-4">
@@ -270,112 +279,114 @@ export default function ProblemsetPage() {
         </div>
 
         {/* Problemset Data Table (Exact from Screenshot 1 & 3) */}
-        <div className="bg-[#121316] border border-[#202126] rounded-sm overflow-hidden">
-          <div className="grid grid-cols-12 px-6 py-3 bg-[#0A0A0C] border-b border-[#202126] text-[10px] font-bold uppercase tracking-wider text-[#8A8A93]">
-            <div className="col-span-1">POS</div>
-            <div className="col-span-1">ID</div>
-            <div className="col-span-6">PROBLEM</div>
-            <div className="col-span-2">RATING</div>
-            <div className="col-span-2 text-right">SOLVED BY</div>
-          </div>
+        <ScrollReveal direction="up" delay={0.15} distance={25}>
+          <div className="bg-[#121316] border border-[#202126] rounded-sm overflow-hidden shadow-2xl">
+            <div className="grid grid-cols-12 px-6 py-3 bg-[#0A0A0C] border-b border-[#202126] text-[10px] font-bold uppercase tracking-wider text-[#8A8A93]">
+              <div className="col-span-1">POS</div>
+              <div className="col-span-1">ID</div>
+              <div className="col-span-6">PROBLEM</div>
+              <div className="col-span-2">RATING</div>
+              <div className="col-span-2 text-right">SOLVED BY</div>
+            </div>
 
-          <div className="divide-y divide-[#1C1D22]">
-            {isSpeedWiping ? (
-              // Skeleton Loading State (Matches Screenshot 3)
-              [1, 2, 3, 4, 5, 6].map((idx) => (
-                <div
-                  key={`skel-${idx}`}
-                  className="grid grid-cols-12 px-6 py-4 items-center animate-pulse"
-                >
-                  <div className="col-span-1 text-[#3B3B42] font-mono text-sm">--</div>
-                  <div className="col-span-1">
-                    <div className="h-4 w-12 bg-[#1F2026] rounded" />
-                  </div>
-                  <div className="col-span-6 pr-4 space-y-2">
-                    <div className="h-4 w-3/5 bg-[#1F2026] rounded" />
-                    <div className="h-3 w-2/5 bg-[#18191E] rounded" />
-                  </div>
-                  <div className="col-span-2">
-                    <div className="h-4 w-16 bg-[#1F2026] rounded" />
-                  </div>
-                  <div className="col-span-2 flex justify-end">
-                    <div className="h-5 w-20 bg-[#1F2026] rounded" />
-                  </div>
-                </div>
-              ))
-            ) : (
-              filteredProblems.map((prob, index) => {
-                const isSolved = currentTeamStats[prob.code]?.solved;
-                const isSaved = savedProblems.includes(prob.id);
-
-                return (
+            <div className="divide-y divide-[#1C1D22]">
+              {isSpeedWiping ? (
+                // Skeleton Loading State (Matches Screenshot 3)
+                [1, 2, 3, 4, 5, 6].map((idx) => (
                   <div
-                    key={prob.id}
-                    onClick={() => handleOpenProblem(prob.id)}
-                    className="grid grid-cols-12 px-6 py-4 items-center hover:bg-[#18191E] cursor-pointer transition-colors group"
+                    key={`skel-${idx}`}
+                    className="grid grid-cols-12 px-6 py-4 items-center animate-pulse"
                   >
-                    {/* POS */}
-                    <div className="col-span-1 font-condensed font-black text-lg text-white">
-                      {index + 1}
-                    </div>
-
-                    {/* ID */}
+                    <div className="col-span-1 text-[#3B3B42] font-mono text-sm">--</div>
                     <div className="col-span-1">
-                      <span className="font-mono text-xs font-bold text-white">
-                        {prob.code}
-                      </span>
+                      <div className="h-4 w-12 bg-[#1F2026] rounded" />
                     </div>
-
-                    {/* PROBLEM */}
-                    <div className="col-span-6 pr-4">
-                      <div className="font-bold text-sm text-white group-hover:text-[#CE2F2C] transition-colors flex items-center gap-2">
-                        {prob.title}
-                        {isSolved && (
-                          <span className="text-[#2BB673] flex items-center gap-0.5 text-xs">
-                            <CheckCircle2 className="w-3.5 h-3.5" />
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-[11px] text-[#8A8A93] mt-0.5">
-                        bitmasks · brute force · sortings · Sector {prob.sector}
-                      </div>
+                    <div className="col-span-6 pr-4 space-y-2">
+                      <div className="h-4 w-3/5 bg-[#1F2026] rounded" />
+                      <div className="h-3 w-2/5 bg-[#18191E] rounded" />
                     </div>
-
-                    {/* RATING */}
                     <div className="col-span-2">
-                      <span className="font-mono text-xs font-bold text-[#8A8A93]">
-                        / NEW
-                      </span>
+                      <div className="h-4 w-16 bg-[#1F2026] rounded" />
                     </div>
-
-                    {/* SOLVED BY & SAVE button */}
-                    <div className="col-span-2 flex items-center justify-end gap-4">
-                      <div className="text-right">
-                        <div className="font-mono font-bold text-xs text-[#B138DD]">
-                          {prob.points * 3 + 7}
-                        </div>
-                        <div className="text-[9px] text-[#8A8A93] font-bold uppercase tracking-wider">
-                          SOLVERS
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={(e) => toggleSave(prob.id, e)}
-                        className={`px-3 py-1 text-[11px] font-bold uppercase rounded border transition-colors ${
-                          isSaved
-                            ? 'bg-[#CE2F2C] border-[#CE2F2C] text-white'
-                            : 'bg-transparent border-[#26262B] text-[#8A8A93] hover:text-white'
-                        }`}
-                      >
-                        {isSaved ? 'SAVED' : 'SAVE'}
-                      </button>
+                    <div className="col-span-2 flex justify-end">
+                      <div className="h-5 w-20 bg-[#1F2026] rounded" />
                     </div>
                   </div>
-                );
-              })
-            )}
+                ))
+              ) : (
+                filteredProblems.map((prob, index) => {
+                  const isSolved = currentTeamStats[prob.code]?.solved;
+                  const isSaved = savedProblems.includes(prob.id);
+
+                  return (
+                    <div
+                      key={prob.id}
+                      onClick={() => handleOpenProblem(prob.id)}
+                      className="grid grid-cols-12 px-6 py-4 items-center hover:bg-[#18191E] cursor-pointer transition-all duration-200 group hover:translate-x-1"
+                    >
+                      {/* POS */}
+                      <div className="col-span-1 font-condensed font-black text-lg text-white">
+                        {index + 1}
+                      </div>
+
+                      {/* ID */}
+                      <div className="col-span-1">
+                        <span className="font-mono text-xs font-bold text-white">
+                          {prob.code}
+                        </span>
+                      </div>
+
+                      {/* PROBLEM */}
+                      <div className="col-span-6 pr-4">
+                        <div className="font-bold text-sm text-white group-hover:text-[#CE2F2C] transition-colors flex items-center gap-2">
+                          {prob.title}
+                          {isSolved && (
+                            <span className="text-[#2BB673] flex items-center gap-0.5 text-xs">
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-[11px] text-[#8A8A93] mt-0.5">
+                          bitmasks · brute force · sortings · Sector {prob.sector}
+                        </div>
+                      </div>
+
+                      {/* RATING */}
+                      <div className="col-span-2">
+                        <span className="font-mono text-xs font-bold text-[#8A8A93]">
+                          / NEW
+                        </span>
+                      </div>
+
+                      {/* SOLVED BY & SAVE button */}
+                      <div className="col-span-2 flex items-center justify-end gap-4">
+                        <div className="text-right">
+                          <div className="font-mono font-bold text-xs text-[#B138DD]">
+                            {prob.points * 3 + 7}
+                          </div>
+                          <div className="text-[9px] text-[#8A8A93] font-bold uppercase tracking-wider">
+                            SOLVERS
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={(e) => toggleSave(prob.id, e)}
+                          className={`px-3 py-1 text-[11px] font-bold uppercase rounded border transition-colors ${
+                            isSaved
+                              ? 'bg-[#CE2F2C] border-[#CE2F2C] text-white'
+                              : 'bg-transparent border-[#26262B] text-[#8A8A93] hover:text-white'
+                          }`}
+                        >
+                          {isSaved ? 'SAVED' : 'SAVE'}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
   );

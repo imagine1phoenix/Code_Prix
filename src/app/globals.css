@@ -153,3 +153,46 @@ select {
 ::-webkit-scrollbar-thumb:hover {
   background: #3B3B42;
 }
+
+/* Micro-Interactions & Card Elevation Effects (Priority 3) */
+.card-interactive {
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.2s ease;
+  will-change: transform;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  border-color: #3E404D;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.8), 0 0 24px rgba(206, 47, 44, 0.16);
+}
+
+.card-interactive:active {
+  transform: translateY(-1px);
+}
+
+.card-interactive-red:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(206, 47, 44, 0.4), 0 0 35px rgba(206, 47, 44, 0.3);
+}
+
+/* Smooth Arrow & Text CTA Micro-Interaction */
+.group:hover .cta-arrow-slide {
+  transform: translateX(4px);
+}
+.cta-arrow-slide {
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Telemetry Light Reflection Sweep */
+@keyframes sweep-light {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(250%) skewX(-15deg); }
+}
+
+.animate-sweep {
+  animation: sweep-light 2.8s ease-in-out infinite;
+}
+
