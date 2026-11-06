@@ -29,6 +29,10 @@ yarn-error.log*
 # Vercel
 .vercel
 
+# Neon CLI local context
+.neon
+
+
 # TypeScript
 *.tsbuildinfo
 
