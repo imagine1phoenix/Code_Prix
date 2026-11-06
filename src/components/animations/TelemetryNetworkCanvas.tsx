@@ -263,3 +263,4 @@ function drawNetwork(
     ctx.shadowBlur = 0;
   }
 }
+
