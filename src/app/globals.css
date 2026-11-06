@@ -1,0 +1,155 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "katex/dist/katex.min.css";
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800;1,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-paddock: #0E0E10;
+  --surface-paddock: #151518;
+  --border-paddock: #26262B;
+  --race-red: #CE2F2C;
+}
+
+body {
+  background-color: #0E0E10;
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid #CE2F2C;
+  outline-offset: 2px;
+}
+
+@keyframes loading-bar {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* F1 Signature Typography */
+.font-condensed {
+  font-family: 'Barlow Condensed', -apple-system, Impact, sans-serif;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.hero-solid {
+  font-family: 'Barlow Condensed', -apple-system, Impact, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+.hero-outlined {
+  font-family: 'Barlow Condensed', -apple-system, Impact, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  color: transparent;
+  -webkit-text-stroke: 1.8px #FFFFFF;
+  text-transform: uppercase;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+}
+
+/* F1 Parallelogram Skew */
+.skew-f1 {
+  transform: skewX(-12deg);
+}
+
+.unskew-f1 {
+  transform: skewX(12deg);
+}
+
+/* 4-Slash Eyebrow Motif */
+.eyebrow-motif {
+  color: #8A8A93;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eyebrow-motif .slashes {
+  color: #CE2F2C;
+  font-style: italic;
+  font-weight: 900;
+}
+
+/* Carbon & Diagonal Racing Stripe Patterns */
+.bg-racing-card {
+  background: linear-gradient(135deg, #CE2F2C 0%, #B52927 50%, #9E1F1E 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-racing-stripes-overlay {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 12px,
+    rgba(0, 0, 0, 0.18) 12px,
+    rgba(0, 0, 0, 0.18) 24px
+  );
+}
+
+/* Watermark Overlay */
+.watermark-overlay {
+  pointer-events: none;
+  user-select: none;
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -35deg,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 40px,
+    transparent 40px,
+    transparent 140px
+  );
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0E0E10;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #26262B;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B3B42;
+}
